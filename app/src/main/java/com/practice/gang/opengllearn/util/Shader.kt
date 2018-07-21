@@ -73,4 +73,20 @@ class Shader {
     fun use(): Unit {
         GLES30.glUseProgram(program)
     }
+
+    fun getAttribLocation(attr: String): Int {
+        var handle: Int = GLES30.glGetAttribLocation(program, attr)
+        if (handle == -1) {
+            throw RuntimeException("Could not find attribute location for: " + attr)
+        }
+        return handle
+    }
+
+    fun getUniformLocation(uniform: String): Int {
+        var handle: Int = GLES30.glGetUniformLocation(program, uniform)
+        if (handle == -1) {
+            throw RuntimeException("Could not find uniform location for: " + uniform)
+        }
+        return handle
+    }
 }
